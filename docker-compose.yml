@@ -1,0 +1,32 @@
+version: "3.2"
+services:
+  # for Deployment
+  mediawiki:
+    build: .
+    restart: always
+    links:
+      - database
+    volumes:
+      - "./LocalSettings.php:/var/www/html/LocalSettings.php"
+    ports:
+      - "80:80"
+  # for Development
+  database:
+    image: mariadb
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: wikidb
+      MYSQL_USER: wikiuser
+      MYSQL_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: rootpw
+    volumes:
+      - "./.mariadb:/var/lib/mysql"
+  # for VisualEditor Extension
+  parsoid:
+    image: thenets/parsoid:0.10.0
+    ports:
+      - 8081:8000
+    environment:
+      - PARSOID_DOMAIN_mediawiki=http://mediawiki/api.php

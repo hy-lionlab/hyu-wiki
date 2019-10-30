@@ -1,0 +1,4 @@
+*.sql
+.mariadb
+.env
+LocalSettings.php
