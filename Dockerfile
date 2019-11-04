@@ -1,5 +1,9 @@
 FROM mediawiki:stable
 
+# Composer Install
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Extension Install
 RUN git clone -b $MEDIAWIKI_BRANCH \
     https://gerrit.wikimedia.org/r/mediawiki/extensions/VisualEditor.git \
     /var/www/html/extensions/VisualEditor \
@@ -57,3 +61,9 @@ RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
 RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
     https://gerrit.wikimedia.org/r/mediawiki/extensions/Translate \
     /var/www/html/extensions/Translate
+
+RUN git clone --depth 1 \
+    https://github.com/edwardspec/mediawiki-aws-s3.git \
+    /var/www/html/extensions/AWS
+
+RUN cd /var/www/html/extensions/AWS && composer install
