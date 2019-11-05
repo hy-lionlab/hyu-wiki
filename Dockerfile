@@ -66,4 +66,8 @@ RUN git clone --depth 1 \
     https://github.com/edwardspec/mediawiki-aws-s3.git \
     /var/www/html/extensions/AWS
 
-RUN cd /var/www/html/extensions/AWS && composer install
+# AWS Composer Installation for www-data user
+RUN chown -R www-data:www-data /var/www/html/extensions
+USER www-data
+RUN cd /var/www/html/extensions/AWS && COMPOSER_CACHE_DIR=/dev/null composer install
+USER root

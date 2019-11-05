@@ -1,0 +1,17 @@
+version: "3.2"
+services:
+  mediawiki:
+    build: .
+    restart: always
+    links:
+      - database
+    volumes:
+      - "./LocalSettings.php:/var/www/html/LocalSettings.php"
+    ports:
+      - "80:80"
+  parsoid:
+    image: thenets/parsoid:0.10.0
+    ports:
+      - 8081:8000
+    environment:
+      - PARSOID_DOMAIN_mediawiki=http://mediawiki/api.php

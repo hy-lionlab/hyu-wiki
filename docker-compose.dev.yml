@@ -1,6 +1,5 @@
 version: "3.2"
 services:
-  # for Deployment
   mediawiki:
     build: .
     restart: always
@@ -8,9 +7,11 @@ services:
       - database
     volumes:
       - "./LocalSettings.php:/var/www/html/LocalSettings.php"
+      # Custom Extension for Hanyang Wiki
+      # Please Remove Comment below for Development
+      #- "../hy-wiki-skin:/var/www/html/skins/hy-wiki-skin"
     ports:
       - "80:80"
-  # for Development
   database:
     image: mariadb
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
@@ -23,7 +24,6 @@ services:
       MYSQL_ROOT_PASSWORD: rootpw
     volumes:
       - "./.mariadb:/var/lib/mysql"
-  # for VisualEditor Extension
   parsoid:
     image: thenets/parsoid:0.10.0
     ports:
