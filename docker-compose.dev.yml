@@ -6,7 +6,8 @@ services:
     links:
       - database
     volumes:
-      - "./LocalSettings.php:/var/www/html/LocalSettings.php"
+      - "./config/secret.php:/var/www/html/secret.php"
+      - "./config/LocalSettings.php:/var/www/html/LocalSettings.php"
       # Custom Extension for Hanyang Wiki
       # Please Remove Comment below for Development
       #- "../hy-wiki-skin:/var/www/html/skins/hy-wiki-skin"

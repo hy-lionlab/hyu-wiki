@@ -1,4 +1,6 @@
 *.sql
 .mariadb
 .env
-LocalSettings.php
+.vscode
+config/LocalSettings.php
+config/secret.php

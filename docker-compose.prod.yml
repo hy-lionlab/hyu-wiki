@@ -6,7 +6,8 @@ services:
     links:
       - database
     volumes:
-      - "./LocalSettings.php:/var/www/html/LocalSettings.php"
+      - "./config/secret.php:/var/www/html/secret.php"
+      - "./config/LocalSettings.php:/var/www/html/LocalSettings.php"
     ports:
       - "80:80"
   parsoid:

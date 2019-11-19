@@ -1,0 +1,5 @@
+.env
+.vscode
+.git/
+.gitignore
+.dockerignore
