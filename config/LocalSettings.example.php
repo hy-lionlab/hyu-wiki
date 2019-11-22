@@ -53,8 +53,11 @@ $wgDBTableOptions = "ENGINE=InnoDB, DEFAULT CHARSET=utf8";
 $wgDBmysql5 = false;
 
 ## Shared memory settings
-$wgMainCacheType = CACHE_NONE;
-$wgMemCachedServers = [];
+$wgMemCachedServers = [ 'memcached:11211' ];
+$wgMainCacheType = CACHE_MEMCACHED;
+$wgSessionCacheType = CACHE_MEMCACHED;
+$wgParserCacheType = CACHE_MEMCACHED;
+$wgMessageCacheType = CACHE_MEMCACHED;
 
 ## To enable image uploads, make sure the 'images' directory
 ## is writable, then set this to true:
@@ -393,7 +396,7 @@ $wgGroupPermissions['*']['createaccount'] = false;
 ##
 # Secret Environment Variables
 ##
-require_once '/var/www/html/secret.php';
+require_once '/ct/secret.php';
 
 ##
 # Debug Mode
