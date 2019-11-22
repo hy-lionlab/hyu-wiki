@@ -11,6 +11,7 @@ RUN set -eux; \
     apt-get update; \
     apt-get install -y --no-install-recommends \
     git \
+    sudo \
     ca-certificates \
     netcat \
     librsvg2-bin \

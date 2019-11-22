@@ -25,8 +25,7 @@ RUN set -eux; \
   curl -fSL "https://releases.wikimedia.org/mediawiki/${MEDIAWIKI_MAJOR_VERSION}/mediawiki-${MEDIAWIKI_VERSION}.tar.gz" -o mediawiki.tar.gz; \
   echo "${MEDIAWIKI_SHA512} *mediawiki.tar.gz" | sha512sum -c -; \
   tar -xzf mediawiki.tar.gz --strip-components=1 --directory /usr/src/; \
-  rm mediawiki.tar.gz; \
-  chown -R www-data:www-data /usr/src;
+  rm mediawiki.tar.gz;
 
 # Extension Install
 RUN git clone -b $MEDIAWIKI_BRANCH \
@@ -90,11 +89,11 @@ RUN git clone --depth 1 \
   https://github.com/edwardspec/mediawiki-aws-s3.git \
   /usr/src/extensions/AWS
 
-# AWS Composer Installation for www-data user
-RUN chown -R www-data:www-data /usr/src/extensions
-USER www-data
-RUN cd /usr/src/extensions/AWS && COMPOSER_CACHE_DIR=/dev/null composer install
-USER root
+# Change owner
+RUN chown -R www-data:www-data /usr/src
+
+# AWS Composer Installation
+RUN cd /usr/src/extensions/AWS && sudo -u www-data COMPOSER_CACHE_DIR=/dev/null composer install
 
 # PHP & Apache Configure
 COPY php/php.ini /usr/local/etc/php/conf.d/mediawiki.ini
@@ -103,7 +102,6 @@ COPY php/opcache-recommended.ini /usr/local/etc/php/conf.d/opcache-recommended.i
 VOLUME /ct
 
 COPY run /usr/local/bin/
-RUN chown root:root /usr/local/bin/run
 RUN chmod 755 /usr/local/bin/run
 
 WORKDIR /usr/src
