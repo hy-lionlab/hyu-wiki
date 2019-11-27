@@ -8,17 +8,18 @@ echo 'Starting Wiki ...'
 
 cd /usr/src
 
-# TODO: localsettings
-ln -sf /ct/LocalSettings.php /usr/src/LocalSettings.php
+# localsettings for Test Environment already dumped database
+#ln -sf /ct/LocalSettings.php /usr/src/LocalSettings.php
 
 # If there is no LocalSettings.php, create one using maintenance/install.php
 if [ ! -f /usr/src/LocalSettings.php ]; then
+  DB_PREFIX="$(php -r 'require "/ct/secret.php"; echo $wgDBprefix;')"
   DB_NAME="$(php -r 'require "/ct/secret.php"; echo $wgDBname;')"
   DB_HOSTNAME="$(php -r 'require "/ct/secret.php"; echo $wgDBserver;')"
   DB_USERNAME="$(php -r 'require "/ct/secret.php"; echo $wgDBuser;')"
   DB_PASSWORD="$(php -r 'require "/ct/secret.php"; echo $wgDBpassword;')"
 
-  php maintenance/install.php \
+  php /usr/src/maintenance/install.php \
     --lang ko \
     --scriptpath '' \
     --dbtype mysql \
@@ -26,6 +27,7 @@ if [ ! -f /usr/src/LocalSettings.php ]; then
     --dbserver "${DB_HOSTNAME}" \
     --dbuser "${DB_USERNAME}" \
     --dbpass "${DB_PASSWORD}" \
+    --dbprefix "${DB_PREFIX}" \
     --installdbuser "${DB_USERNAME}" \
     --installdbpass "${DB_PASSWORD}" \
     --pass 'admin_password_please_change' \
@@ -36,7 +38,7 @@ if [ ! -f /usr/src/LocalSettings.php ]; then
 fi
 
 # Run update script
-php maintenance/update.php --quick
+php /usr/src/maintenance/update.php --quick
 
 # run PHP FPM
 php-fpm

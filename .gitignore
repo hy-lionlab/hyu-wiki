@@ -2,5 +2,16 @@
 .mariadb
 .env
 .vscode
+
+# Config Files
 config/LocalSettings.php
+config/LocalSettings.*.php
+!config/LocalSettings.example.php
 config/secret.php
+config/secret.*.php
+!config/secret.example.php
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

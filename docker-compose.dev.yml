@@ -6,7 +6,7 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./http/mediawiki.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./http:/etc/nginx/conf.d:ro
       - files:/usr/src
     depends_on:
       - mediawiki

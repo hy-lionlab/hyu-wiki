@@ -1,0 +1,94 @@
+{
+  "AWSEBDockerrunVersion": 2,
+  "containerDefinitions": [
+    {
+      "essential": true,
+      "image": "hywiki/mediawiki:v0",
+      "memory": 128,
+      "mountPoints": [
+        {
+          "containerPath": "/ct",
+          "sourceVolume": "_Config"
+        },
+        {
+          "containerPath": "/usr/src",
+          "sourceVolume": "Files"
+        }
+      ],
+      "links": ["memcached"],
+      "name": "mediawiki"
+    },
+    {
+      "essential": true,
+      "image": "nginx:latest",
+      "memory": 128,
+      "mountPoints": [
+        {
+          "containerPath": "/etc/nginx/conf.d",
+          "sourceVolume": "_Http"
+        },
+        {
+          "containerPath": "/usr/src",
+          "sourceVolume": "Files"
+        }
+      ],
+      "links": ["mediawiki"],
+      "name": "http",
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "hostPort": 80
+        },
+        {
+          "containerPort": 443,
+          "hostPort": 443
+        }
+      ]
+    },
+    {
+      "essential": true,
+      "image": "memcached:1-alpine",
+      "memory": 128,
+      "name": "memcached"
+    },
+    {
+      "environment": [
+        {
+          "name": "PARSOID_DOMAIN_mediawiki",
+          "value": "http://http/api.php"
+        }
+      ],
+      "essential": true,
+      "image": "thenets/parsoid:0.10.0",
+      "memory": 128,
+      "name": "parsoid",
+      "portMappings": [
+        {
+          "containerPort": 8000,
+          "hostPort": 8081
+        }
+      ]
+    }
+  ],
+  "family": "",
+  "volumes": [
+    {
+      "host": {
+        "sourcePath": "$PWD/config"
+      },
+      "name": "_Config"
+    },
+    {
+      "host": {
+        "sourcePath": "files"
+      },
+      "name": "Files"
+    },
+    {
+      "host": {
+        "sourcePath": "$PWD/http"
+      },
+      "name": "_Http"
+    }
+  ]
+}

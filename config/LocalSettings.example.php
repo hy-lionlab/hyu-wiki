@@ -403,7 +403,7 @@ require_once '/ct/secret.php';
 ##
 if (defined('IS_DEBUG') && IS_DEBUG) {
 	# 도메인 변경
-	$wgServer = 'http://' . DEBUG_HOST;
+	$wgServer = DEBUG_SERVER;
 
     $wgBounceHandlerInternalIPs = [ '0.0.0.0/0' ];
 

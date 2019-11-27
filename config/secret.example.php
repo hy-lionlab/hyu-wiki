@@ -1,7 +1,7 @@
 <?php
 
 const IS_DEBUG = true;
-const DEBUG_HOST = 'wiki.local';
+const DEBUG_SERVER = 'http://wiki.local';
 
 # Trust an X-Forwarded-For (XFF) header specifying a private IP in requests
 # from a trusted forwarding proxy

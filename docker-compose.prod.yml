@@ -6,17 +6,17 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./http/mediawiki.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./http:/etc/nginx/conf.d:ro # EB deploy files to /var/app/current. For Test, you have to modify it to ${PWD} in Dockerrun.aws.json
       - files:/usr/src
-    depends_on:
+    links:
       - mediawiki
   mediawiki:
-    build: .
-    depends_on:
-      - mariadb
+    image: hywiki/mediawiki:v0
     volumes:
-      - ./config:/ct:ro
+      - ./config:/ct:ro # EB deploy files to /var/app/current. For Test, you have to modify it to ${PWD} in Dockerrun.aws.json
       - files:/usr/src
+    links:
+      - memcached
   parsoid:
     image: thenets/parsoid:0.10.0
     ports:
