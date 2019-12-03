@@ -1,4 +1,4 @@
-version: "3.2"
+version: "3"
 services:
   http:
     image: nginx:latest
@@ -6,17 +6,18 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./http:/etc/nginx/conf.d:ro # EB deploy files to /var/app/current. you have to modify it to $PWD in Dockerrun.aws.json
+      - ./http/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./http/nginx.conf:/etc/nginx/nginx.conf:ro
       - files:/usr/src
-    links:
+    depends_on:
       - mediawiki
   mediawiki:
-    image: hywiki/mediawiki:v0
+    build: .
     volumes:
-      - ./config:/ct:ro # EB deploy files to /var/app/current. you have to modify it to $PWD in Dockerrun.aws.json
+      - ./config:/ct:ro
       - files:/usr/src
-    links:
-      - memcached
+    environment:
+      - MEDIAWIKI_HAS_ALREADY_DATABASE=true
   parsoid:
     image: thenets/parsoid:0.10.0
     ports:

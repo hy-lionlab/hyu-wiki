@@ -110,7 +110,7 @@ $wgShowIPinHeader = false;
 ##
 # Options for Performance
 ##
-$wgUseGzip = true; # gzip 압축
+
 $wgDisableCounters = true; # 위키 사용자를 기록하는 카운터를 비활성화합니다.
 $wgShowArchiveThumbnails = false; # 과거 섬네일 비활성화
 $wgJobRunRate = 0.01; # doJobs Shell 코드를 느리게 사용하게 하여 서버 자원을 절약하고 속도를 빠르게 합니다.
@@ -215,7 +215,7 @@ $wgGroupPermissions['emailconfirmed']['writeapi'] = true;
 # Mail Settings
 ##
 
-require_once "$IP/extensions/SwiftMailer/SwiftMailer.php";
+wfLoadExtension('SwiftMailer');
 
 $wgSMTPAuthenticationMethod = 'tls';
 
@@ -405,19 +405,17 @@ if (defined('IS_DEBUG') && IS_DEBUG) {
 	# 도메인 변경
 	$wgServer = DEBUG_SERVER;
 
-    $wgBounceHandlerInternalIPs = [ '0.0.0.0/0' ];
-
     # 이메일 변경
     $wgEnableEmail = false;
 
-    # 디버깅
-    error_reporting( -1 );
-    ini_set( 'display_errors', 1 );
+	# 디버깅
+	error_reporting( -1 );
+	ini_set( 'display_errors', 1 );
 
 	$wgShowExceptionDetails = true;
+	$wgShowDBErrorBacktrace = true;
     $wgDebugToolbar = true;
     $wgDebugComments = true;
-    $wgShowDBErrorBacktrace = true;
     
 	# File Cache가 비활성화되어 있어야 디버그 툴을 쓸 수 있음
     $wgUseFileCache = false;

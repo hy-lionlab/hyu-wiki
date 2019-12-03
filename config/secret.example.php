@@ -26,8 +26,8 @@ $wgSMTP = [
     'password'  => 'YOUR_SMTP_PASSWORD',
 ];
 
-# Email bounce handler
-$wgBounceHandlerInternalIPs = [ '127.0.0.1' ];
+# Email bounce handler, for Debug 127.0.0.1
+$wgBounceHandlerInternalIPs = [ '0.0.0.0/0' ];
 
 # Google Analytics Tracking ID
 $wgGoogleAnalyticsAccount = 'GOOGLE_ANALYTICS_ACCOUNT_ID';

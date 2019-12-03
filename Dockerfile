@@ -95,6 +95,9 @@ RUN chown -R www-data:www-data /usr/src
 # AWS Composer Installation
 RUN cd /usr/src/extensions/AWS && sudo -u www-data COMPOSER_CACHE_DIR=/dev/null composer install
 
+# SwiftMailer Composer Installation
+RUN cd /usr/src/extensions/SwiftMailer && sudo -u www-data COMPOSER_CACHE_DIR=/dev/null composer install
+
 # PHP & Apache Configure
 COPY php/php.ini /usr/local/etc/php/conf.d/mediawiki.ini
 COPY php/opcache-recommended.ini /usr/local/etc/php/conf.d/opcache-recommended.ini

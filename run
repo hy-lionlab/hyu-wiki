@@ -4,12 +4,18 @@
 
 set -euo pipefail; IFS=$'\n\t'
 
+: ${MEDIAWIKI_HAS_ALREADY_DATABASE:=false}
+
 echo 'Starting Wiki ...'
 
 cd /usr/src
 
-# localsettings for Test Environment already dumped database
-#ln -sf /ct/LocalSettings.php /usr/src/LocalSettings.php
+# LocalSettings is needed for wiki database already set, but ignore this line if locally run
+if [ $MEDIAWIKI_HAS_ALREADY_DATABASE = true ]; then
+  echo 'Wiki has already Database ...'
+
+  ln -sf /ct/LocalSettings.php /usr/src/LocalSettings.php
+fi
 
 # If there is no LocalSettings.php, create one using maintenance/install.php
 if [ ! -f /usr/src/LocalSettings.php ]; then
