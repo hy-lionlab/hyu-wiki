@@ -89,6 +89,9 @@ RUN git clone --depth 1 \
   https://github.com/edwardspec/mediawiki-aws-s3.git \
   /usr/src/extensions/AWS
 
+# Logo Overwrite
+COPY ./resources/logo.png /usr/src/resources/assets/
+
 # Change owner
 RUN chown -R www-data:www-data /usr/src
 

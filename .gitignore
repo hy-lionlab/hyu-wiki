@@ -2,6 +2,7 @@
 .mariadb
 .env
 .vscode
+.DS_Store
 
 # Config Files
 config/LocalSettings.php
