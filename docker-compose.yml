@@ -13,8 +13,9 @@ services:
       - mediawiki
   mediawiki:
     build: .
-    depends_on:
-      - mariadb
+    # for Development
+    # depends_on:
+    #   - mariadb
     volumes:
       - ./config:/ct:ro
       - files:/usr/src
@@ -22,17 +23,18 @@ services:
       # Please Remove Comment below for Development
       #- "../hy-wiki-skin:/usr/src/skins/hy-wiki-skin"
     environment:
-      - MEDIAWIKI_HAS_ALREADY_DATABASE=false
-  mariadb:
-    image: mariadb
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    volumes:
-      - database:/var/lib/mysql
-    environment:
-      MYSQL_DATABASE: wikidb
-      MYSQL_USER: wikiuser
-      MYSQL_PASSWORD: example
-      MYSQL_ROOT_PASSWORD: rootpw
+      - MEDIAWIKI_HAS_ALREADY_DATABASE=false # Warning, If database has already set, change this envrionment's flag to true
+  # for Development
+  # mariadb:
+  #   image: mariadb
+  #   command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+  #   volumes:
+  #     - database:/var/lib/mysql
+  #   environment:
+  #     MYSQL_DATABASE: wikidb
+  #     MYSQL_USER: wikiuser
+  #     MYSQL_PASSWORD: example
+  #     MYSQL_ROOT_PASSWORD: rootpw
   parsoid:
     image: thenets/parsoid:0.10.0
     ports:
