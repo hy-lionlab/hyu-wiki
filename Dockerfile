@@ -85,6 +85,10 @@ RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
   https://gerrit.wikimedia.org/r/mediawiki/extensions/Translate \
   /usr/src/extensions/Translate
 
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/skins/MinervaNeue \
+  /usr/src/skins/MinervaNeue
+
 RUN git clone --depth 1 \
   https://github.com/edwardspec/mediawiki-aws-s3.git \
   /usr/src/extensions/AWS
