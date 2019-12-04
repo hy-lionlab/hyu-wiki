@@ -30,9 +30,6 @@ $wgScriptPath        = "";
 $wgArticlePath      = "/$1";
 $wgUsePathInfo      = true;
 
-## The protocol and server name to use in fully-qualified URLs
-$wgServer = "http://wiki.hanyang.ac.kr";
-
 ## The URL path to static resources (images, scripts, etc.)
 $wgResourceBasePath = $wgScriptPath;
 
@@ -146,6 +143,7 @@ $wgGroupPermissions['bot']['noanalytics'] = true;
 wfLoadExtension( 'TemplateStyles' );
 wfLoadExtension( 'MobileFrontend' );
 $wgMFAutodetectMobileView = true;
+$wgMFDefaultSkinClass = 'SkinMinerva';
 
 ##
 # Time Settings

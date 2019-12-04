@@ -24,6 +24,8 @@ services:
       - 8081:8000
     environment:
       - PARSOID_DOMAIN_mediawiki=http://http/api.php
+    depends_on:
+      - http
   memcached:
     image: memcached:1-alpine
 

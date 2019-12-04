@@ -3,6 +3,10 @@
 const IS_DEBUG = true;
 const DEBUG_SERVER = 'http://wiki.local';
 
+# Visual Editor의 API URL로도 사용하기 때문에 매우 중요!
+## The protocol and server name to use in fully-qualified URLs
+$wgServer = "http://wiki.hanyang.ac.kr";
+
 # Trust an X-Forwarded-For (XFF) header specifying a private IP in requests
 # from a trusted forwarding proxy
 $wgSquidServersNoPurge = [ '10.0.0.0/8' ];
