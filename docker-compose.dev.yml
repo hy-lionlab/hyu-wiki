@@ -1,0 +1,47 @@
+version: "3"
+services:
+  http:
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./http/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./http/nginx.conf:/etc/nginx/nginx.conf:ro
+      - files:/usr/src
+    depends_on:
+      - mediawiki
+  mediawiki:
+    build: .
+    depends_on:
+      - mariadb
+    volumes:
+      - ./config:/ct:ro
+      - files:/usr/src
+      # Custom Extension for Hanyang Wiki
+      # Please Remove Comment below for Development
+      #- "../hy-wiki-skin:/usr/src/skins/hy-wiki-skin"
+    environment:
+      - MEDIAWIKI_HAS_ALREADY_DATABASE=false
+  mariadb:
+    image: mariadb
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - database:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: wikidb
+      MYSQL_USER: wikiuser
+      MYSQL_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: rootpw
+  parsoid:
+    image: thenets/parsoid:0.10.0
+    ports:
+      - 8081:8000
+    environment:
+      - PARSOID_DOMAIN_mediawiki=http://http/api.php
+  memcached:
+    image: memcached:1-alpine
+
+volumes:
+  files:
+  database:
