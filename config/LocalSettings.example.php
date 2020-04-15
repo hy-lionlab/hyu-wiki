@@ -141,9 +141,9 @@ $wgGroupPermissions['bot']['noanalytics'] = true;
 ##
 
 wfLoadExtension( 'TemplateStyles' );
-wfLoadExtension( 'MobileFrontend' );
+// wfLoadExtension( 'MobileFrontend' );
 $wgMFAutodetectMobileView = true;
-$wgMFDefaultSkinClass = 'SkinMinerva';
+// $wgMFDefaultSkinClass = 'SkinMinerva';
 
 ##
 # Time Settings
