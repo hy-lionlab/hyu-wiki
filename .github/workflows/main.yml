@@ -1,0 +1,84 @@
+name: Hanyang Wiki AWS Elastic Beanstalk Deploy
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Copy from LocalSettings.example.php
+      run: php -r "file_exists('./config/LocalSettings.php') || copy('./config/LocalSettings.example.php', './config/LocalSettings.php');"
+
+    - name: Create secret.php for Production Environment
+      run: |
+        echo {
+          <?php
+
+          const IS_DEBUG = false;
+          const DEBUG_SERVER = '${{ SERVER_URL }}';
+
+          # Visual Editor의 API URL로도 사용하기 때문에 매우 중요!
+          ## The protocol and server name to use in fully-qualified URLs
+          $wgServer = "${{ SERVER_URL }}";
+
+          # Trust an X-Forwarded-For (XFF) header specifying a private IP in requests
+          # from a trusted forwarding proxy
+          $wgSquidServersNoPurge = [ '10.0.0.0/8' ];
+
+          # Database settings
+          $wgDBprefix = "wk";
+          $wgDBserver = "${{ DB_URL }}";
+          $wgDBname = "${{ DB_NAME }}";
+          $wgDBuser = "${{ DB_USER }}";
+          $wgDBpassword = "${{ DB_PASSWORD }}";
+
+          # Email & SMTP
+          $wgEmergencyContact = "${{ EMAIL_ADDR }}";
+          $wgPasswordSender   = "${{ EMAIL_ADDR }}";
+
+          $wgSMTP = [
+              'host'      => '${{ SMTP_HOST }}',
+              'IDHost'    => '${{ SMTP_HOST }}',
+              'port'      => 25,
+              'auth'      => false,
+              'username'  => '${{ SMTP_USER_NAME }}',
+              'password'  => '${{ SMTP_USER_PASSWORD }}',
+          ];
+
+          # Email bounce handler
+          $wgBounceHandlerInternalIPs = [ '0.0.0.0/0' ];
+
+          # Google Analytics Tracking ID
+          $wgGoogleAnalyticsAccount = '${{ GOOGLE_ANALYTICS_ID }}';
+
+          # Site secret key
+          $wgSecretKey = '${{ WK_SECRET_KEY }}';
+          # Site upgrade key. Must be set to a string (default provided) to turn on the
+          # web installer while LocalSettings.php is in place
+          $wgUpgradeKey = '${{ WK_UPGRADE_KEY }}';
+
+          # AWS
+          // Configure AWS credentials.
+          // THIS IS NOT NEEDED if your EC2 instance has an IAM instance profile.
+          $wgAWSCredentials = [
+            'key' => '${{ AWS_S3_ACCESS_KEY }}',
+            'secret' => '${{ AWS_S3_SECRET_KEY }}',
+            'token' => false
+          ];
+          $wgAWSRegion = '${{ AWS_S3_REGION_NAME }}';
+          $wgAWSBucketName = "${{ AWS_S3_BUCKET_NAME }}";
+        } >> ./config/secret.php
+
+    - name: Beanstalk Deploy
+      uses: einaregilsson/beanstalk-deploy@v9
+      with:
+        aws_access_key: ${{ AWS_BEANSTALK_ACCESS_KEY }}
+        aws_secret_key: ${{ AWS_BEANSTALK_SECRET_KEY }}
+        region: ${{ AWS_BEANSTALK_REGION_NAME }}
+        application_name: ${{ AWS_BEANSTALK_APPLICATION_NAME }}
+        environment_name: ${{ AWS_BEANSTALK_ENVIRONMENT_NAME }}
