@@ -11,3 +11,9 @@ config/LocalSettings.*.php
 config/secret.php
 config/secret.*.php
 !config/secret.example.php
+!config/secret.eb.php
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
