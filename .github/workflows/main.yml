@@ -35,6 +35,9 @@ jobs:
       - name: Logout of Amazon ECR
         if: always()
         run: docker logout ${{ steps.login-ecr.outputs.registry }}
+        
+      - name: Generate deployment package
+        run: zip deploy.zip ./*
 
       - name: Beanstalk Deploy
         uses: einaregilsson/beanstalk-deploy@v9
@@ -44,3 +47,5 @@ jobs:
           region: ${{ secrets.AWS_EB_REGION_NAME }}
           application_name: ${{ secrets.AWS_EB_APPLICATION_NAME }}
           environment_name: ${{ secrets.AWS_EB_ENVIRONMENT_NAME }}
+          deployment_package: deploy.zip
+          version_label: ${{ github.sha }}
