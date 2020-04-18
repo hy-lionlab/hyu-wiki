@@ -9,7 +9,7 @@
         }
       ],
       "essential": true,
-      "image": "hywiki/mediawiki:v0",
+      "image": "827392432764.dkr.ecr.ap-northeast-2.amazonaws.com/hy-wiki/mediawiki:latest",
       "links": ["memcached"],
       "mountPoints": [
         {
