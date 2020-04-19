@@ -12,7 +12,7 @@ services:
     links:
       - mediawiki
   mediawiki:
-    image: hywiki/mediawiki:v0
+    image: 827392432764.dkr.ecr.ap-northeast-2.amazonaws.com/hy-wiki/mediawiki:latest
     volumes:
       - $PWD/config:/ct:ro # EB deploy files to /var/app/current. you have to modify it to $PWD in Dockerrun.aws.json
       - files:/usr/src
