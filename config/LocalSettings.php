@@ -140,10 +140,11 @@ $wgGroupPermissions['bot']['noanalytics'] = true;
 # Mobile Settings
 ##
 
+wfLoadSkin('MinervaNeue');
 wfLoadExtension( 'TemplateStyles' );
-// wfLoadExtension( 'MobileFrontend' );
+wfLoadExtension( 'MobileFrontend' );
 $wgMFAutodetectMobileView = true;
-// $wgMFDefaultSkinClass = 'SkinMinerva';
+$wgMFDefaultSkinClass = 'SkinMinerva';
 
 ##
 # Time Settings
@@ -404,16 +405,17 @@ if (defined('IS_DEBUG') && IS_DEBUG) {
 	$wgServer = DEBUG_SERVER;
 
     # 이메일 변경
-    $wgEnableEmail = false;
+	$wgEnableEmail = false;
 
 	# 디버깅
 	error_reporting( -1 );
 	ini_set( 'display_errors', 1 );
 
+    # 디버깅
+    $wgDebugToolbar = true;
+	$wgDebugComments = true;
 	$wgShowExceptionDetails = true;
 	$wgShowDBErrorBacktrace = true;
-    $wgDebugToolbar = true;
-    $wgDebugComments = true;
     
 	# File Cache가 비활성화되어 있어야 디버그 툴을 쓸 수 있음
     $wgUseFileCache = false;

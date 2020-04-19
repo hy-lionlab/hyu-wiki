@@ -5,9 +5,8 @@
 .DS_Store
 
 # Config Files
-config/LocalSettings.php
 config/LocalSettings.*.php
-!config/LocalSettings.example.php
+!config/LocalSettings.php
 config/secret.php
 config/secret.*.php
 !config/secret.example.php
