@@ -140,11 +140,11 @@ $wgGroupPermissions['bot']['noanalytics'] = true;
 # Mobile Settings
 ##
 
-wfLoadSkin('MinervaNeue');
+#wfLoadSkin('MinervaNeue');
 wfLoadExtension( 'TemplateStyles' );
-wfLoadExtension( 'MobileFrontend' );
-$wgMFAutodetectMobileView = true;
-$wgMFDefaultSkinClass = 'SkinMinerva';
+#wfLoadExtension( 'MobileFrontend' );
+#$wgMFAutodetectMobileView = true;
+#$wgMFDefaultSkinClass = 'SkinMinerva';
 
 ##
 # Time Settings
