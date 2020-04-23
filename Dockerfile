@@ -7,7 +7,7 @@ ARG MEDIAWIKI_BRANCH=REL1_33
 ARG MEDIAWIKI_VERSION=1.33.1
 ARG MEDIAWIKI_SHA512=0cf786872714546fb13843bc5f8b851bfcc665f7459a0326a3fb77efb0d1976b618d4e2206d3fb0852a60b7fa375e98aa0b5600b03209ce9eabd9e3dc5db7d1a
 
-FROM 827392432764.dkr.ecr.ap-northeast-2.amazonaws.com/hy-wiki/base:cee5599d5b13b6ccf58b5f44526c7602f8f6abc3
+FROM 827392432764.dkr.ecr.ap-northeast-2.amazonaws.com/hy-wiki/base:latest
 
 # Set timezone
 ENV TZ=Asia/Seoul
