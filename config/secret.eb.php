@@ -17,6 +17,12 @@ $wgDBname = getenv('DATABASE_NAME');
 $wgDBuser = getenv('DATABASE_USERNAME');
 $wgDBpassword = getenv('DATABASE_PASSWORD');
 
+# Visual Editor
+$wgVirtualRestConfig['modules']['parsoid'] = array(
+    'url' => getenv('PARSOID_HOST'),
+    'domain' => 'mediawiki',
+);
+
 # Email & SMTP
 $wgEmergencyContact = getenv('EMERGE_CONTACT_EMAIL_ADDR');
 $wgPasswordSender   = getenv('PASSWORD_SENDER_CONTACT_EMAIL_ADDR');

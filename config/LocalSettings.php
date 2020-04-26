@@ -135,17 +135,6 @@ $wgGoogleAnalyticsIgnoreSpecials = array( 'Userlogin', 'Userlogout', 'Preference
 $wgGroupPermissions['sysop']['noanalytics'] = true;
 $wgGroupPermissions['bot']['noanalytics'] = true;
 
-
-##
-# Mobile Settings
-##
-
-#wfLoadSkin('MinervaNeue');
-wfLoadExtension( 'TemplateStyles' );
-#wfLoadExtension( 'MobileFrontend' );
-#$wgMFAutodetectMobileView = true;
-#$wgMFDefaultSkinClass = 'SkinMinerva';
-
 ##
 # Time Settings
 ##
@@ -232,6 +221,14 @@ $wgEmailConfirmToEdit = true;
 
 wfLoadSkin( 'Vector' );
 $wgDefaultSkin = "vector";
+
+##
+# Mobile Settings
+##
+
+wfLoadExtension( 'TemplateStyles' );
+wfLoadExtension( 'MobileFrontend' );
+$wgMFDefaultSkinClass = 'SkinVector';
 
 ##
 # Debug Settings
@@ -321,11 +318,6 @@ $wgDefaultUserOptions['visualeditor-editor'] = "visualeditor";
 
 // Don't allow users to disable it
 $wgHiddenPrefs[] = 'visualeditor-enable';
-
-$wgVirtualRestConfig['modules']['parsoid'] = array(
-    'url' => 'http://parsoid:8000',
-    'domain' => 'mediawiki',
-);
 
 $wgVisualEditorEnableWikitext = true;
 $wgVisualEditorUseSingleEditTab = false;

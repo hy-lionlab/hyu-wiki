@@ -22,6 +22,7 @@
         }
       ],
       "name": "mediawiki",
+      "hostname": "mediawiki",
       "memory": 128
     },
     {
@@ -43,6 +44,7 @@
         }
       ],
       "name": "http",
+      "hostname": "http",
       "memory": 128,
       "portMappings": [
         {
@@ -62,9 +64,11 @@
           "value": "http://http/api.php"
         }
       ],
+      "links": ["http"],
       "essential": true,
       "image": "thenets/parsoid:0.10.0",
       "name": "parsoid",
+      "hostname": "parsoid",
       "memory": 128,
       "portMappings": [
         {
@@ -77,6 +81,7 @@
       "essential": true,
       "image": "memcached:1-alpine",
       "name": "memcached",
+      "hostname": "memcached",
       "memory": 128
     }
   ],

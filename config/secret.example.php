@@ -17,6 +17,12 @@ $wgDBname = "YOUR_DATABASE_NAME";
 $wgDBuser = 'YOUR_DATABASE_USERNAME';
 $wgDBpassword = 'YOUR_DATABASE_PASSWORD';
 
+# Visual Editor
+$wgVirtualRestConfig['modules']['parsoid'] = array(
+    'url' => 'PARSOID_HOST_URL',
+    'domain' => 'mediawiki',
+);
+
 # Email & SMTP
 $wgEmergencyContact = "YOUR_EMERGE_CONTACT_EMAIL_ADDR";
 $wgPasswordSender   = "YOUR_PASSWORD_SENDER_CONTACT_ADDR";
