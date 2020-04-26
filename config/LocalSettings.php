@@ -35,7 +35,7 @@ $wgResourceBasePath = $wgScriptPath;
 
 ## The URL path to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
-$wgLogo = "$wgResourceBasePath/resources/assets/logo.png";
+$wgLogo = "$wgResourceBasePath/resources/hy-resources/logo.png";
 
 ## Database settings
 $wgDBtype = "mysql";
@@ -226,9 +226,8 @@ $wgDefaultSkin = "vector";
 # Mobile Settings
 ##
 
-wfLoadExtension( 'TemplateStyles' );
 wfLoadExtension( 'MobileFrontend' );
-$wgMFDefaultSkinClass = 'SkinVector';
+$wgMFAutodetectMobileView = true;
 
 ##
 # Debug Settings

@@ -94,7 +94,7 @@ RUN git clone --depth 1 \
   /usr/src/extensions/AWS
 
 # COPY Resources
-COPY --chown=www-data:www-data resources /usr/src/
+COPY --chown=www-data:www-data resources /usr/src/resources/
 
 # Change owner
 RUN chown -R www-data:www-data /usr/src
