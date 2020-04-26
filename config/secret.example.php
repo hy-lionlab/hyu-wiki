@@ -19,7 +19,7 @@ $wgDBpassword = 'YOUR_DATABASE_PASSWORD';
 
 # Visual Editor
 $wgVirtualRestConfig['modules']['parsoid'] = array(
-    'url' => 'PARSOID_HOST_URL',
+    'url' => 'PARSOID_HOST',
     'domain' => 'mediawiki',
 );
 

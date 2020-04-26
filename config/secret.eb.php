@@ -18,6 +18,8 @@ $wgDBuser = getenv('DATABASE_USERNAME');
 $wgDBpassword = getenv('DATABASE_PASSWORD');
 
 # Visual Editor
+# WHY: Elastic Beanstalk Docker 설정에서 Network Mode 설정이 안되고 Links 설정으로 HOSTNAME을 연결해야 함
+# 여기서 순환 참조가 일어나 FAILED, PARSOID의 주소를 강제로 주입하는 방법으로 해결 on EB
 $wgVirtualRestConfig['modules']['parsoid'] = array(
     'url' => getenv('PARSOID_HOST'),
     'domain' => 'mediawiki',
