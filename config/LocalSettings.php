@@ -220,7 +220,7 @@ $wgEmailConfirmToEdit = true;
 ##
 
 wfLoadSkin( 'Vector' );
-wfLoadSkin( 'MinervaNeue' );
+#wfLoadSkin( 'MinervaNeue' );
 $wgDefaultSkin = "vector";
 
 ##
@@ -229,7 +229,7 @@ $wgDefaultSkin = "vector";
 
 wfLoadExtension( 'MobileFrontend' );
 $wgMFAutodetectMobileView = true;
-$wgMFDefaultSkinClass = 'SkinMinerva';
+#$wgMFDefaultSkinClass = 'SkinMinerva';
 
 ##
 # Debug Settings
