@@ -227,9 +227,8 @@ $wgDefaultSkin = "vector";
 # Mobile Settings
 ##
 
-wfLoadExtension( 'MobileFrontend' );
-$wgMFAutodetectMobileView = true;
-#$wgMFDefaultSkinClass = 'SkinMinerva';
+#wfLoadExtension( 'MobileFrontend' );
+#$wgMFAutodetectMobileView = true;
 
 ##
 # Debug Settings
