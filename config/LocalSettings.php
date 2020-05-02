@@ -26,9 +26,10 @@ $wgMetaNamespace = "Hyu_Wiki";
 ## For more information on customizing the URLs
 ## (like /w/index.php/Page_title to /wiki/Page_title) please see:
 ## https://www.mediawiki.org/wiki/Manual:Short_URL
-$wgScriptPath        = "";
+$wgScriptPath	    = "";
 $wgArticlePath      = "/$1";
 $wgUsePathInfo      = true;
+$wgScriptExtension  = ".php";
 
 ## The URL path to static resources (images, scripts, etc.)
 $wgResourceBasePath = $wgScriptPath;
@@ -36,6 +37,8 @@ $wgResourceBasePath = $wgScriptPath;
 ## The URL path to the logo.  Make sure you change this from the default,
 ## or else you'll overwrite your logo when you upgrade!
 $wgLogo = "$wgResourceBasePath/resources/hy-resources/logo.png";
+$wgFavicon = "$wgResourceBasePath/resources/hy-resources/favicons/favicon.ico";
+$wgAppleTouchIcon = "$wgResourceBasePath/resources/hy-resources/favicons/apple-touch-icon.png";
 
 ## Database settings
 $wgDBtype = "mysql";
@@ -50,11 +53,15 @@ $wgDBTableOptions = "ENGINE=InnoDB, DEFAULT CHARSET=utf8";
 $wgDBmysql5 = false;
 
 ## Shared memory settings
-$wgMemCachedServers = [ 'memcached:11211' ];
-$wgMainCacheType = CACHE_MEMCACHED;
-$wgSessionCacheType = CACHE_MEMCACHED;
-$wgParserCacheType = CACHE_MEMCACHED;
-$wgMessageCacheType = CACHE_MEMCACHED;
+$wgMainCacheType = CACHE_ACCEL;
+$wgSessionCacheType = CACHE_DB;
+
+## FIXME: Memcached 서버를 적용한다면 기존 설정을 제거하고 아래 주석을 해제한다.
+#$wgMemCachedServers = [ 'memcached:11211' ];
+#$wgMainCacheType = CACHE_MEMCACHED;
+#$wgSessionCacheType = CACHE_MEMCACHED;
+#$wgParserCacheType = CACHE_MEMCACHED;
+#$wgMessageCacheType = CACHE_MEMCACHED;
 
 ## To enable image uploads, make sure the 'images' directory
 ## is writable, then set this to true:

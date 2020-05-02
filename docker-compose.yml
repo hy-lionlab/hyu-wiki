@@ -18,8 +18,6 @@ services:
       - files:/usr/src
     environment:
       - MEDIAWIKI_HAS_ALREADY_DATABASE=true
-    links:
-      - memcached
   parsoid:
     image: thenets/parsoid:0.10.0
     ports:
@@ -28,8 +26,6 @@ services:
       - PARSOID_DOMAIN_mediawiki=http://http/api.php
     links:
       - http
-  memcached:
-    image: memcached:1-alpine
 
 volumes:
   files:

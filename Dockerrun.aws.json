@@ -10,7 +10,6 @@
       ],
       "essential": true,
       "image": "827392432764.dkr.ecr.ap-northeast-2.amazonaws.com/hy-wiki/mediawiki:latest",
-      "links": ["memcached"],
       "mountPoints": [
         {
           "containerPath": "/ct",
@@ -76,13 +75,6 @@
           "hostPort": 8081
         }
       ]
-    },
-    {
-      "essential": true,
-      "image": "memcached:1-alpine",
-      "name": "memcached",
-      "hostname": "memcached",
-      "memory": 128
     }
   ],
   "volumes": [
