@@ -119,7 +119,6 @@ $wgDisableCounters = true; # 위키 사용자를 기록하는 카운터를 비�
 $wgShowArchiveThumbnails = false; # 과거 섬네일 비활성화
 $wgJobRunRate = 0.01; # doJobs Shell 코드를 느리게 사용하게 하여 서버 자원을 절약하고 속도를 빠르게 합니다.
 
-
 ##
 # Google Analytics Settings
 ##
@@ -247,8 +246,12 @@ $wgShowExceptionDetails = false;
 $wgShowDBErrorBacktrace = false;
 
 ##
-# Custom Settings
+# About Account Settings
 ##
+
+wfLoadExtension( 'AntiSpoof' );
+
+wfLoadExtension( 'LoginNotify' );
 
 wfLoadExtension( 'Renameuser' );
 $wgGroupPermissions['sysop']['renameuser'] = true;
@@ -256,10 +259,8 @@ $wgGroupPermissions['sysop']['renameuser'] = true;
 wfLoadExtension( 'UserMerge' );
 $wgGroupPermissions['sysop']['usermerge'] = true;
 
-wfLoadExtension( 'ParserFunctions' );
-$wgPFEnableStringFunctions = true;
-
-$wgExternalLinkTarget = '_blank';
+wfLoadExtension( 'DisableAccount' );
+$wgGroupPermissions['bureaucrat']['disableaccount'] = true;
 
 ## Files
 $wgUploadSizeWarning = 20971520;
@@ -295,26 +296,44 @@ $wgContribScoreReports = array(
 );
 
 ##
+# ====== Editor Settings
+##
+
+##
+# SEO Settings
+##
+
+wfLoadExtension( 'Description2' );
+$wgEnableMetaDescriptionFunctions = true;
+
+wfLoadExtension( 'OpenGraphMeta' );
+
+##
+# Parser Functions
+##
+
+wfLoadExtension( 'ParserFunctions' );
+$wgPFEnableStringFunctions = true;
+
+##
+# CodeMirror
+##
+
+wfLoadExtension( 'CodeMirror' );
+# Enables use of CodeMirror by default but still allow users to disable it
+$wgDefaultUserOptions['usecodemirror'] = 1;
+
+##
 # Wiki Editor
 ##
 
 wfLoadExtension( 'WikiEditor' );
-
-# Enables use of WikiEditor by default but still allows users to disable it in preferences
-$wgDefaultUserOptions['usebetatoolbar'] = 1;
-
-# Enables link and table wizards by default but still allows users to disable them in preferences
-$wgDefaultUserOptions['usebetatoolbar-cgd'] = 1;
-
-# Displays the Preview and Changes tabs
-$wgDefaultUserOptions['wikieditor-preview'] = 1;
-
-# Displays the Publish and Cancel buttons on the top right side
-$wgDefaultUserOptions['wikieditor-publish'] = 1;
+$wgHiddenPrefs[] = 'usebetatoolbar';
 
 ##
 # Visual Editor
 ##
+
 wfLoadExtension( 'VisualEditor' );
 
 // Enable by default for everybody
@@ -376,6 +395,48 @@ $wgAWSRepoHashLevels = '2'; # Default 0
 # 2 means that S3 objects will be named a/ab/Filename.png (same as when MediaWiki stores files in local directories)
 $wgAWSRepoDeletedHashLevels = '3'; # Default 0
 # 3 for naming a/ab/abc/Filename.png (same as when MediaWiki stores deleted files in local directories)
+
+##
+# Embed Video
+##
+
+wfLoadExtension( 'EmbedVideo' );
+
+##
+# Template
+##
+
+// TemplateData
+wfLoadExtension( 'TemplateData' );
+
+// TemplateSandbox
+wfLoadExtension( 'TemplateSandbox' );
+
+// TemplateStyles
+wfLoadExtension( 'TemplateStyles' );
+$wgTemplateStylesAllowedUrls = [
+	'font' => [
+		'<^https://fonts\\.googleapis\\.com/css(?:[?#]|$)>',
+	],
+];
+
+// TemplateWizard
+wfLoadExtension( 'TemplateWizard' );
+$wgDefaultUserOptions['templatewizard-betafeature'] = 1;
+
+##
+# Contents + ETC
+##
+
+wfLoadExtension( 'Poem' );
+wfLoadExtension( 'Echo' );
+wfLoadExtension( 'Disambiguator' );
+wfLoadExtension( 'Josa' );
+
+wfLoadExtension( 'PageImages' );
+$wgPageImagesLeadSectionOnly = false;
+
+$wgExternalLinkTarget = '_blank';
 
 ##
 # Temp Settings
