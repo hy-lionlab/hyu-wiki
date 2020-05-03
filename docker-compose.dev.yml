@@ -17,7 +17,6 @@ services:
       dockerfile: ./Dockerfile-dev
     links:
       - mariadb
-      - memcached
     volumes:
       - ./config:/ct:ro
       - files:/usr/src
@@ -42,8 +41,6 @@ services:
       - 8081:8000
     environment:
       - PARSOID_DOMAIN_mediawiki=http://http/api.php
-  memcached:
-    image: memcached:1-alpine
 
 volumes:
   files:
