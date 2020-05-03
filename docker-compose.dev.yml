@@ -24,7 +24,7 @@ services:
       # Please Remove Comment below for Development
       #- "../hy-wiki-skin:/usr/src/skins/hy-wiki-skin"
     environment:
-      - MEDIAWIKI_HAS_ALREADY_DATABASE=false
+      - MEDIAWIKI_HAS_ALREADY_DATABASE=true
   mariadb:
     image: mariadb
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
@@ -35,6 +35,8 @@ services:
       MYSQL_USER: wikiuser
       MYSQL_PASSWORD: example
       MYSQL_ROOT_PASSWORD: rootpw
+    ports:
+      - 3306:3306
   parsoid:
     image: thenets/parsoid:0.10.0
     ports:

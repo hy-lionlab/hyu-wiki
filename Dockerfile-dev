@@ -86,12 +86,75 @@ RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
   /usr/src/extensions/Translate
 
 RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/AntiSpoof \
+  /usr/src/extensions/AntiSpoof
+
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/CodeMirror \
+  /usr/src/extensions/CodeMirror
+
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/Description2 \
+  /usr/src/extensions/Description2
+
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/DisableAccount \
+  /usr/src/extensions/DisableAccount
+
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/Disambiguator \
+  /usr/src/extensions/Disambiguator
+
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/Echo \
+  /usr/src/extensions/Echo
+
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/Josa \
+  /usr/src/extensions/Josa
+
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/LoginNotify \
+  /usr/src/extensions/LoginNotify
+
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/OpenGraphMeta \
+  /usr/src/extensions/OpenGraphMeta
+
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/PageImages \
+  /usr/src/extensions/PageImages
+
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateData \
+  /usr/src/extensions/TemplateData
+
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateSandbox \
+  /usr/src/extensions/TemplateSandbox
+
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateWizard \
+  /usr/src/extensions/TemplateWizard
+
+##
+# Skins
+##
+
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
   https://gerrit.wikimedia.org/r/mediawiki/skins/MinervaNeue \
   /usr/src/skins/MinervaNeue
 
+###
+# Wikimedia Repository
+###
 RUN git clone --depth 1 \
   https://github.com/edwardspec/mediawiki-aws-s3.git \
   /usr/src/extensions/AWS
+
+RUN git clone --depth 1 \
+  https://gitlab.com/hydrawiki/extensions/EmbedVideo.git \
+  /usr/src/extensions/EmbedVideo
 
 # COPY Resources
 COPY --chown=www-data:www-data resources /usr/src/resources/
@@ -100,10 +163,13 @@ COPY --chown=www-data:www-data resources /usr/src/resources/
 RUN chown -R www-data:www-data /usr/src
 
 # AWS Composer Installation
-RUN cd /usr/src/extensions/AWS && sudo -u www-data COMPOSER_CACHE_DIR=/dev/null composer install
+RUN cd /usr/src/extensions/AWS && sudo -u www-data COMPOSER_CACHE_DIR=/dev/null composer install --no-dev
 
 # SwiftMailer Composer Installation
-RUN cd /usr/src/extensions/SwiftMailer && sudo -u www-data COMPOSER_CACHE_DIR=/dev/null composer install
+RUN cd /usr/src/extensions/SwiftMailer && sudo -u www-data COMPOSER_CACHE_DIR=/dev/null composer install --no-dev
+
+# AntiSpoof Composer Installation
+RUN cd /usr/src/extensions/AntiSpoof && sudo -u www-data COMPOSER_CACHE_DIR=/dev/null composer install --no-dev
 
 # PHP & Apache Configure
 COPY php/php.ini /usr/local/etc/php/conf.d/mediawiki.ini
