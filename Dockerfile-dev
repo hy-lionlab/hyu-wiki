@@ -174,6 +174,7 @@ RUN cd /usr/src/extensions/AntiSpoof && sudo -u www-data COMPOSER_CACHE_DIR=/dev
 # PHP & Apache Configure
 COPY php/php.ini /usr/local/etc/php/conf.d/mediawiki.ini
 COPY php/opcache-recommended.ini /usr/local/etc/php/conf.d/opcache-recommended.ini
+COPY php/www.conf /usr/local/etc/php-fpm.d/www.conf
 
 VOLUME /ct
 
