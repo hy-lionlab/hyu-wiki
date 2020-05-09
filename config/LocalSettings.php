@@ -434,6 +434,11 @@ $wgTemplateStylesAllowedUrls = [
 wfLoadExtension( 'TemplateWizard' );
 $wgDefaultUserOptions['templatewizard-betafeature'] = 1;
 
+// Graph
+
+wfLoadExtension( 'JsonConfig' ); // Dependant Extensions
+wfLoadExtension( 'Graph' );
+
 ##
 # Contents + ETC
 ##

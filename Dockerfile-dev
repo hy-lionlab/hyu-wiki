@@ -137,6 +137,15 @@ RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
   https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateWizard \
   /usr/src/extensions/TemplateWizard
 
+## for Graph Extensions
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/JsonConfig \
+  /usr/src/extensions/JsonConfig
+
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/Graph \
+  /usr/src/extensions/Graph
+
 ##
 # Skins
 ##
@@ -146,7 +155,7 @@ RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
   /usr/src/skins/MinervaNeue
 
 ###
-# Wikimedia Repository
+# Non Wikimedia Repository
 ###
 RUN git clone --depth 1 \
   https://github.com/edwardspec/mediawiki-aws-s3.git \
