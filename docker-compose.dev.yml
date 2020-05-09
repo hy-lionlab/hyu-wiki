@@ -4,7 +4,6 @@ services:
     image: nginx:latest
     ports:
       - 80:80
-      - 443:443
     volumes:
       - ./http/default.conf:/etc/nginx/conf.d/default.conf:ro
       - ./http/nginx.conf:/etc/nginx/nginx.conf:ro
@@ -22,7 +21,7 @@ services:
       - files:/usr/src
       # Custom Extension for Hanyang Wiki
       # Please Remove Comment below for Development
-      #- "../hy-wiki-skin:/usr/src/skins/hy-wiki-skin"
+      #- "../hyu-wiki-skin:/usr/src/skins/hyu-wiki-skin"
     environment:
       - MEDIAWIKI_HAS_ALREADY_DATABASE=true
   mariadb:
