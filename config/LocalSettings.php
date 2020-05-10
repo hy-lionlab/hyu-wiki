@@ -434,6 +434,18 @@ $wgTemplateStylesAllowedUrls = [
 wfLoadExtension( 'TemplateWizard' );
 $wgDefaultUserOptions['templatewizard-betafeature'] = 1;
 
+// Graph
+
+wfLoadExtension( 'JsonConfig' ); // Dependant Extensions
+wfLoadExtension( 'Graph' );
+
+// Pdf
+
+wfLoadExtension( 'Mpdf' );
+$wgMpdfSimpleOutput = true;
+$wgMpdfTab = true;
+$wgMpdfToolboxLink = true;
+
 ##
 # Contents + ETC
 ##
