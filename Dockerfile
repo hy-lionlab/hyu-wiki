@@ -146,6 +146,10 @@ RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
   https://gerrit.wikimedia.org/r/mediawiki/extensions/Graph \
   /usr/src/extensions/Graph
 
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/Mpdf \
+  /usr/src/extensions/Mpdf
+
 ##
 # Skins
 ##
@@ -180,6 +184,9 @@ RUN cd /usr/src/extensions/SwiftMailer && sudo -u www-data COMPOSER_CACHE_DIR=/d
 # AntiSpoof Composer Installation
 RUN cd /usr/src/extensions/AntiSpoof && sudo -u www-data COMPOSER_CACHE_DIR=/dev/null composer install --no-dev
 
+# MPdf Composer Installation
+RUN cd /usr/src/extensions/Mpdf && sudo -u www-data COMPOSER_CACHE_DIR=/dev/null composer install --no-dev
+
 # PHP & Apache Configure
 COPY php/php.ini /usr/local/etc/php/conf.d/mediawiki.ini
 COPY php/opcache-recommended.ini /usr/local/etc/php/conf.d/opcache-recommended.ini
@@ -191,6 +198,10 @@ COPY run /usr/local/bin/
 RUN chmod 755 /usr/local/bin/run
 
 WORKDIR /usr/src
+
+# FIXME: [TEMP] MPdf Configurations for Korean Font
+RUN sed -i 's/$this->useAdobeCJK = .*/$this->useAdobeCJK = true;/' /usr/src/extensions/Mpdf/vendor/mpdf/mpdf/config.php
+RUN sed -i 's/$mpdf=.*/$mpdf = new mPDF( $mode, $format, 0, "unbatang", $marginLeft, $marginRight, $marginTop, $marginBottom, $marginHeader, $marginFooter, $orientation );/' /usr/src/extensions/Mpdf/Mpdf.hooks.php
 
 EXPOSE 9000
 CMD ["/usr/local/bin/run"]

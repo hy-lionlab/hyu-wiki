@@ -439,6 +439,13 @@ $wgDefaultUserOptions['templatewizard-betafeature'] = 1;
 wfLoadExtension( 'JsonConfig' ); // Dependant Extensions
 wfLoadExtension( 'Graph' );
 
+// Pdf
+
+wfLoadExtension( 'Mpdf' );
+$wgMpdfSimpleOutput = true;
+$wgMpdfTab = true;
+$wgMpdfToolboxLink = true;
+
 ##
 # Contents + ETC
 ##
