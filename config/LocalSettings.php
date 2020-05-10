@@ -152,6 +152,11 @@ date_default_timezone_set( $wgLocaltimezone );
 # Permission Settings
 ##
 
+## CSS
+$wgUseSiteCss = true;
+$wgGroupPermissions['sysop']['editinterface'] = true;
+$wgGroupPermissions['sysop']['editsitecss'] = true;
+
 # Email Domain Check for Restriction
 wfLoadExtension('RestrictEmailDomain');
 $wgEmailDomain = ['hanyang.ac.kr', 'ehanyang.ac.kr'];
