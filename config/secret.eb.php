@@ -59,6 +59,9 @@ $wgAWSCredentials = [
 $wgAWSRegion = getenv('AWS_S3_REGION_NAME');
 $wgAWSBucketName = getenv('AWS_S3_BUCKET_NAME');
 
+# Google Maps
+$egMapsGMaps3ApiKey = getenv('GOOGLE_MAPS_API_KEY');
+
 # Google Analytics
 $wgHooks['BeforePageDisplay'][]  = 'efGoogleAnalyticsInsertHook';
 

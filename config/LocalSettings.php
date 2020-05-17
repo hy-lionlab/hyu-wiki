@@ -449,6 +449,13 @@ wfLoadExtension( 'HitCounters' );
 $wgHitcounterUpdateFreq = true;
 $wgEnableCountersAtTheFooter = true;
 
+// Maps Extensions
+
+wfLoadExtension( 'Maps' );
+
+$egMapsDefaultService = 'googlemaps3';
+$egMapsDefaultGeoService = 'google';
+
 ##
 # Temp Settings
 ##

@@ -187,6 +187,9 @@ RUN cd /usr/src/extensions/AntiSpoof && sudo -u www-data COMPOSER_CACHE_DIR=/dev
 # MPdf Composer Installation
 RUN cd /usr/src/extensions/Mpdf && sudo -u www-data COMPOSER_CACHE_DIR=/dev/null composer install --no-dev
 
+# Maps Extension Installation
+RUN cd /usr/src && COMPOSER=composer.local.json composer require --no-update mediawiki/maps:~7.0 && composer update mediawiki/maps --no-dev -o
+
 # PHP & Apache Configure
 COPY php/php.ini /usr/local/etc/php/conf.d/mediawiki.ini
 COPY php/opcache-recommended.ini /usr/local/etc/php/conf.d/opcache-recommended.ini
