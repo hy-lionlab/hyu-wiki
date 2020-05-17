@@ -42,9 +42,6 @@ $wgSMTP = [
 # Email bounce handler, for Debug 127.0.0.1
 $wgBounceHandlerInternalIPs = [ '0.0.0.0/0' ];
 
-# Google Analytics Tracking ID
-$wgGoogleAnalyticsAccount = getenv('GOOGLE_ANALYTICS_TRACKING_ID');
-
 # Site secret key
 $wgSecretKey = getenv('MW_SECRET_KEY');
 # Site upgrade key. Must be set to a string (default provided) to turn on the
@@ -61,3 +58,23 @@ $wgAWSCredentials = [
 ];
 $wgAWSRegion = getenv('AWS_S3_REGION_NAME');
 $wgAWSBucketName = getenv('AWS_S3_BUCKET_NAME');
+
+# Google Analytics
+$wgHooks['BeforePageDisplay'][]  = 'efGoogleAnalyticsInsertHook';
+
+function efGoogleAnalyticsInsertHook( OutputPage &$out, Skin &$skin ) {
+	$googleAnalyticsTrackingID = getenv('GOOGLE_ANALYTICS_TRACKING_ID');
+	$code = <<<EOF
+<script async src="https://www.googletagmanager.com/gtag/js?id=$googleAnalyticsTrackingID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '$googleAnalyticsTrackingID');
+</script>
+EOF;
+
+	$out->addHeadItem( 'gtag-insert', $code );
+	return true;
+}
