@@ -38,10 +38,6 @@ RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
   https://gerrit.wikimedia.org/r/mediawiki/extensions/MobileFrontend \
   /usr/src/extensions/MobileFrontend
 
-RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
-  https://gerrit.wikimedia.org/r/mediawiki/extensions/googleAnalytics \
-  /usr/src/extensions/googleAnalytics
-
 RUN git clone https://github.com/somadeaki/RestrictEmailDomain.git \
   /usr/src/extensions/RestrictEmailDomain
 

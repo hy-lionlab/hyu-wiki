@@ -115,31 +115,8 @@ $wgShowIPinHeader = false;
 # Options for Performance
 ##
 
-$wgDisableCounters = true; # 위키 사용자를 기록하는 카운터를 비활성화합니다.
 $wgShowArchiveThumbnails = false; # 과거 섬네일 비활성화
 $wgJobRunRate = 0.01; # doJobs Shell 코드를 느리게 사용하게 하여 서버 자원을 절약하고 속도를 빠르게 합니다.
-
-##
-# Google Analytics Settings
-##
-require_once "$IP/extensions/googleAnalytics/googleAnalytics.php";
-
-// Optional configuration (for defaults see googleAnalytics.php)
-// Store full IP address in Google Universal Analytics (see https://support.google.com/analytics/answer/2763052?hl=en for details)
-$wgGoogleAnalyticsAnonymizeIP = false; 
-
-// Array with NUMERIC namespace IDs where web analytics code should NOT be included.
-$wgGoogleAnalyticsIgnoreNsIDs = array(500);
-
-// Array with page names (see magic word Extension:Google Analytics Integration) where web analytics code should NOT be included.
-$wgGoogleAnalyticsIgnorePages = array('ArticleX', 'Foo:Bar');
-
-// Array with special pages where web analytics code should NOT be included.
-$wgGoogleAnalyticsIgnoreSpecials = array( 'Userlogin', 'Userlogout', 'Preferences', 'ChangePassword', 'OATH');
-
-// Use 'noanalytics' permission to exclude specific user groups from web analytics, e.g.
-$wgGroupPermissions['sysop']['noanalytics'] = true;
-$wgGroupPermissions['bot']['noanalytics'] = true;
 
 ##
 # Time Settings
