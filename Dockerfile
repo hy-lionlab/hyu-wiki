@@ -150,6 +150,14 @@ RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
   https://gerrit.wikimedia.org/r/mediawiki/extensions/HitCounters \
   /usr/src/extensions/HitCounters
 
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/BetaFeatures \
+  /usr/src/extensions/BetaFeatures
+
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/CommonsMetadata \
+  /usr/src/extensions/CommonsMetadata
+
 ##
 # Skins
 ##

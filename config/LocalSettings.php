@@ -456,6 +456,11 @@ wfLoadExtension( 'Maps' );
 $egMapsDefaultService = 'googlemaps3';
 $egMapsDefaultGeoService = 'google';
 
+// Multimedia Viewer Extensions
+wfLoadExtension( 'BetaFeatures' );
+wfLoadExtension( 'CommonsMetadata' );
+wfLoadExtension( 'MultimediaViewer' );
+
 ##
 # Temp Settings
 ##
