@@ -150,6 +150,10 @@ RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
   https://gerrit.wikimedia.org/r/mediawiki/extensions/Mpdf \
   /usr/src/extensions/Mpdf
 
+RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
+  https://gerrit.wikimedia.org/r/mediawiki/extensions/HitCounters \
+  /usr/src/extensions/HitCounters
+
 ##
 # Skins
 ##

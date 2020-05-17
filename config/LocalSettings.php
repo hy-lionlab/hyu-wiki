@@ -465,6 +465,13 @@ $wgPageImagesLeadSectionOnly = false;
 
 $wgExternalLinkTarget = '_blank';
 
+// Hit Counters
+
+wfLoadExtension( 'HitCounters' );
+
+$wgHitcounterUpdateFreq = true;
+$wgEnableCountersAtTheFooter = true;
+
 ##
 # Temp Settings
 ##
