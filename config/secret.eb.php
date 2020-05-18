@@ -63,6 +63,7 @@ $wgAWSBucketName = getenv('AWS_S3_BUCKET_NAME');
 $egMapsGMaps3ApiKey = getenv('GOOGLE_MAPS_API_KEY');
 
 # Google Analytics
+# TODO: GTag.js Extension 개발로 따로 빼기
 $wgHooks['BeforePageDisplay'][]  = 'efGoogleAnalyticsInsertHook';
 
 function efGoogleAnalyticsInsertHook( OutputPage &$out, Skin &$skin ) {
