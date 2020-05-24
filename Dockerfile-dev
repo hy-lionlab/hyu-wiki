@@ -207,9 +207,5 @@ RUN chmod 755 /usr/local/bin/run
 
 WORKDIR /usr/src
 
-# FIXME: [TEMP] MPdf Configurations for Korean Font
-RUN sed -i 's/$this->useAdobeCJK = .*/$this->useAdobeCJK = true;/' /usr/src/extensions/Mpdf/vendor/mpdf/mpdf/config.php
-RUN sed -i 's/$mpdf=.*/$mpdf = new mPDF( $mode, $format, 0, "unbatang", $marginLeft, $marginRight, $marginTop, $marginBottom, $marginHeader, $marginFooter, $orientation );/' /usr/src/extensions/Mpdf/Mpdf.hooks.php
-
 EXPOSE 9000
 CMD ["/usr/local/bin/run"]
