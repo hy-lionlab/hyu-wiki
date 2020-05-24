@@ -1,11 +1,12 @@
-# Ref: https://github.com/wikimedia/mediawiki-docker/blob/master/dev/Dockerfile
-# Ref: https://github.com/wikimedia/mediawiki-docker/blob/master/{VERSION}/Dockerfile
+# 미디어 위키 버전 설정
+# 참고
+# - https://github.com/wikimedia/mediawiki-docker/blob/master/dev/Dockerfile
+# - https://github.com/wikimedia/mediawiki-docker/blob/master/{VERSION}/Dockerfile
 
-# Mediawiki Version
-ARG MEDIAWIKI_MAJOR_VERSION=1.33
-ARG MEDIAWIKI_BRANCH=REL1_33
-ARG MEDIAWIKI_VERSION=1.33.1
-ARG MEDIAWIKI_SHA512=0cf786872714546fb13843bc5f8b851bfcc665f7459a0326a3fb77efb0d1976b618d4e2206d3fb0852a60b7fa375e98aa0b5600b03209ce9eabd9e3dc5db7d1a
+ARG MEDIAWIKI_MAJOR_VERSION=1.34
+ARG MEDIAWIKI_BRANCH=REL1_34
+ARG MEDIAWIKI_VERSION=1.34.1
+ARG MEDIAWIKI_SHA512=3a03ac696e2d5300faba0819ba0d876a21798c8dcdc64cc2792c6db0aa81d4feaced8dc133b6ca3e476c770bf51516b0a624cb336784ae3d2b51c8c0aa5987a0
 
 FROM 827392432764.dkr.ecr.ap-northeast-2.amazonaws.com/hy-wiki/base:latest
 
@@ -116,10 +117,6 @@ RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
 RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
   https://gerrit.wikimedia.org/r/mediawiki/extensions/OpenGraphMeta \
   /usr/src/extensions/OpenGraphMeta
-
-RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
-  https://gerrit.wikimedia.org/r/mediawiki/extensions/PageImages \
-  /usr/src/extensions/PageImages
 
 RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
   https://gerrit.wikimedia.org/r/mediawiki/extensions/TemplateData \
