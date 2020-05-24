@@ -140,10 +140,6 @@ RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
   /usr/src/extensions/Graph
 
 RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
-  https://gerrit.wikimedia.org/r/mediawiki/extensions/Mpdf \
-  /usr/src/extensions/Mpdf
-
-RUN git clone --depth 1 -b $MEDIAWIKI_BRANCH \
   https://gerrit.wikimedia.org/r/mediawiki/extensions/HitCounters \
   /usr/src/extensions/HitCounters
 
@@ -173,6 +169,10 @@ RUN git clone --depth 1 \
 RUN git clone --depth 1 \
   https://gitlab.com/hydrawiki/extensions/EmbedVideo.git \
   /usr/src/extensions/EmbedVideo
+
+RUN git clone --depth 1 -b notosans-kr \
+  https://github.com/hy-lionlab/mediawiki-extensions-Mpdf.git \
+  /usr/src/extensions/Mpdf
 
 # COPY Resources
 COPY --chown=www-data:www-data resources /usr/src/resources/
