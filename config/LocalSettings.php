@@ -55,13 +55,7 @@ $wgDBmysql5 = false;
 ## Shared memory settings
 $wgMainCacheType = CACHE_ACCEL;
 $wgSessionCacheType = CACHE_DB;
-
-## FIXME: Memcached 서버를 적용한다면 기존 설정을 제거하고 아래 주석을 해제한다.
-#$wgMemCachedServers = [ 'memcached:11211' ];
-#$wgMainCacheType = CACHE_MEMCACHED;
-#$wgSessionCacheType = CACHE_MEMCACHED;
-#$wgParserCacheType = CACHE_MEMCACHED;
-#$wgMessageCacheType = CACHE_MEMCACHED;
+$wgAuthenticationTokenVersion = '1';
 
 ## To enable image uploads, make sure the 'images' directory
 ## is writable, then set this to true:
@@ -109,7 +103,12 @@ $wgDiff3 = "/usr/bin/diff3";
 ##
 $wgUseFileCache = true;
 $wgFileCacheDirectory = "$IP/cache";
+
+##
+# IP
+##
 $wgShowIPinHeader = false;
+$wgUsedPrivateIPs = true;
 
 ##
 # Options for Performance
