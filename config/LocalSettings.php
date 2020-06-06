@@ -243,13 +243,22 @@ $wgGroupPermissions['sysop']['usermerge'] = true;
 wfLoadExtension( 'DisableAccount' );
 $wgGroupPermissions['bureaucrat']['disableaccount'] = true;
 
-## Files
+##
+# Files
+##
 $wgUploadSizeWarning = 20971520;
 $wgMaxUploadSize = 20971520;
 $wgAllowJavaUploads = false;
 $wgStrictFileExtensions = true;
-$wgFileExtensions = array('bmp', 'png', 'gif', 'jpg', 'jpeg', 'pdf');
-$wgFileBlacklist = array(
+$wgFileExtensions = [
+	// Images
+	'bmp', 'png', 'gif', 'jpg', 'jpeg', 'ai', 'svg',
+	// Documents
+	'pdf', 'ppt', 'pptx', 'xls', 'xlsx',
+	// Media
+	'emf', 'wmf',
+];
+$wgFileBlacklist = [
   # HTML may contain cookie-stealing JavaScript and web bugs
   'html', 'htm', 'js', 'jsb', 'mhtml', 'mht', 'xhtml', 'xht',
   # PHP scripts may execute arbitrary code on the server
@@ -257,7 +266,8 @@ $wgFileBlacklist = array(
   # Other types that may be interpreted by some servers
   'shtml', 'jhtml', 'pl', 'py', 'cgi',
   # May contain harmful executables for Windows victims
-  'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl' );
+  'exe', 'scr', 'dll', 'msi', 'vbs', 'bat', 'com', 'pif', 'cmd', 'vxd', 'cpl'
+];
 
 ##
 # Contribution Scores Settings
