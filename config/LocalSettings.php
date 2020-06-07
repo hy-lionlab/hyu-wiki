@@ -466,6 +466,10 @@ wfLoadExtension( 'Maps' );
 $egMapsDefaultService = 'googlemaps3';
 $egMapsDefaultGeoService = 'google';
 
+// Sentry Extensions
+
+wfLoadExtension( 'Sentry' );
+
 ##
 # Temp Settings
 ##

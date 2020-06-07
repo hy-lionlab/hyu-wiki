@@ -22,6 +22,7 @@ services:
       # Custom Extension for Hanyang Wiki
       # Please Remove Comment below for Development
       #- "../hyu-wiki-skin:/usr/src/skins/hyu-wiki-skin"
+      #- "../mediawiki-extensions-Sentry:/usr/src/extensions/Sentry"
     environment:
       - MEDIAWIKI_HAS_ALREADY_DATABASE=true
   mariadb:

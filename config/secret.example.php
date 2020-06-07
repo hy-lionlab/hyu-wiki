@@ -1,7 +1,7 @@
 <?php
 
-$IS_DEBUG = true;
-$DEBUG_SERVER = 'http://wiki.local';
+const IS_DEBUG = true;
+const DEBUG_SERVER = 'http://wiki.local';
 
 # Visual Editor의 API URL로도 사용하기 때문에 매우 중요!
 ## The protocol and server name to use in fully-qualified URLs
@@ -13,6 +13,7 @@ $wgCanonicalServer = "https://wiki.hanyang.ac.kr";
 $wgSquidServersNoPurge = [ '10.0.0.0/8' ];
 
 # Database settings
+$wgDBprefix = "wk";
 $wgDBserver = 'YOUR_DATABASE_HOSTNAME';
 $wgDBname = "YOUR_DATABASE_NAME";
 $wgDBuser = 'YOUR_DATABASE_USERNAME';
@@ -40,14 +41,15 @@ $wgSMTP = [
 # Email bounce handler, for Debug 127.0.0.1
 $wgBounceHandlerInternalIPs = [ '0.0.0.0/0' ];
 
-# Google Analytics Tracking ID
-$wgGoogleAnalyticsAccount = 'GOOGLE_ANALYTICS_ACCOUNT_ID';
-
 # Site secret key
 $wgSecretKey = 'SECRET_KEY';
 # Site upgrade key. Must be set to a string (default provided) to turn on the
 # web installer while LocalSettings.php is in place
 $wgUpgradeKey = 'UPGRADE_KEY';
+
+# Sentry
+$wgSentryDsn = 'SENTRY_DSN';
+$wgSentryEnvironment = 'local';
 
 # AWS
 // Configure AWS credentials.
@@ -59,3 +61,23 @@ $wgAWSCredentials = [
 ];
 $wgAWSRegion = 'ap-northeast-2';
 $wgAWSBucketName = "YOUR_AWS_BUCKET_NAME";
+
+# TEMP: Google Analytics
+$wgHooks['BeforePageDisplay'][]  = 'efGoogleAnalyticsInsertHook';
+
+function efGoogleAnalyticsInsertHook( OutputPage &$out, Skin &$skin ) {
+	$googleAnalyticsTrackingID = 'GOOGLE_ANALYTICS_ID';
+	$code = <<<EOF
+<script async src="https://www.googletagmanager.com/gtag/js?id=$googleAnalyticsTrackingID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '$googleAnalyticsTrackingID');
+</script>
+EOF;
+
+	$out->addHeadItem( 'gtag-insert', $code );
+	return true;
+}

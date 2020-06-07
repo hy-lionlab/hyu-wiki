@@ -48,6 +48,10 @@ $wgSecretKey = getenv('MW_SECRET_KEY');
 # web installer while LocalSettings.php is in place
 $wgUpgradeKey = getenv('MW_UPGRADE_KEY');
 
+# Sentry
+$wgSentryDsn = getenv('SENTRY_DSN');
+$wgSentryEnvironment = getenv('SENTRY_ENVIRONMENT');
+
 # AWS
 // Configure AWS credentials.
 // THIS IS NOT NEEDED if your EC2 instance has an IAM instance profile.
