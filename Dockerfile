@@ -170,6 +170,10 @@ RUN git clone --depth 1 \
   https://gitlab.com/hydrawiki/extensions/EmbedVideo.git \
   /usr/src/extensions/EmbedVideo
 
+RUN git clone --depth 1 -b sentry-v2 \
+  https://github.com/hy-lionlab/mediawiki-extensions-Sentry.git \
+  /usr/src/extensions/Sentry
+
 RUN git clone --depth 1 -b notosans-kr \
   https://github.com/hy-lionlab/mediawiki-extensions-Mpdf.git \
   /usr/src/extensions/Mpdf
@@ -191,6 +195,9 @@ RUN cd /usr/src/extensions/AntiSpoof && sudo -u www-data COMPOSER_CACHE_DIR=/dev
 
 # MPdf Composer Installation
 RUN cd /usr/src/extensions/Mpdf && sudo -u www-data COMPOSER_CACHE_DIR=/dev/null composer install --no-dev
+
+# Sentry Composer Installation
+RUN cd /usr/src/extensions/Sentry && sudo -u www-data COMPOSER_CACHE_DIR=/dev/null composer install --no-dev
 
 # Maps Extension Installation
 RUN cd /usr/src && COMPOSER=composer.local.json composer require --no-update mediawiki/maps:~7.0 && composer update mediawiki/maps --no-dev -o
