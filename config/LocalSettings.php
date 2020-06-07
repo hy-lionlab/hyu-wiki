@@ -361,24 +361,21 @@ wfLoadExtension( 'CiteThisPage' );
 
 ##
 # Translate Settings
+# hhttps://www.mediawiki.org/wiki/MediaWiki_Language_Extension_Bundle
 ##
+
+wfLoadExtension( 'Babel' );
+wfLoadExtension( 'cldr' );
+
+wfLoadExtension( 'CleanChanges' );
+$wgCCTrailerFilter = true;
+$wgCCUserFilter = false;
+$wgDefaultUserOptions['usenewrc'] = 1;
 
 wfLoadExtension( 'LocalisationUpdate' );
 $wgLocalisationUpdateDirectory = "$IP/cache";
 
-wfLoadExtension( 'CleanChanges' ); #
-$wgDefaultUserOptions['usenewrc'] = 1;
-$wgCCTrailerFilter = true;
-$wgCCUserFilter = false;
-
-wfLoadExtension( 'Babel' ); #
-wfLoadExtension( 'cldr' ); #
-
-wfLoadExtension( 'ContentTranslation' ); #
-wfLoadExtension( 'UniversalLanguageSelector' ); #
-
-require_once "$IP/extensions/Translate/Translate.php"; #
-$wgGroupPermissions['user']['pagetranslation'] = true;
+wfLoadExtension( 'Translate' );
 $wgGroupPermissions['user']['translate'] = true;
 $wgGroupPermissions['user']['translate-messagereview'] = true;
 $wgGroupPermissions['user']['translate-groupreview'] = true;
@@ -386,7 +383,11 @@ $wgGroupPermissions['user']['translate-import'] = true;
 $wgGroupPermissions['sysop']['pagetranslation'] = true;
 $wgGroupPermissions['sysop']['translate-manage'] = true;
 $wgTranslateDocumentationLanguageCode = 'qqq';
-$wgExtraLanguageNames['qqq'] = 'Message documentation'; # No linguistic content. Used for documenting messages
+$wgExtraLanguageNames['qqq'] = 'Message documentation';
+
+wfLoadExtension( 'UniversalLanguageSelector' );
+
+wfLoadExtension( 'ContentTranslation' );
 
 ##
 # AWS S3 Settings
