@@ -254,7 +254,7 @@ $wgFileExtensions = [
 	// Images
 	'bmp', 'png', 'gif', 'jpg', 'jpeg', 'ai', 'svg',
 	// Documents
-	'pdf', 'ppt', 'pptx', 'xls', 'xlsx',
+	'pdf', 'ppt', 'pptx', 'xls', 'xlsx', 'hwp',
 	// Media
 	'emf', 'wmf',
 ];
