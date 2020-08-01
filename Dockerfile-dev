@@ -207,6 +207,13 @@ COPY php/php.ini /usr/local/etc/php/conf.d/mediawiki.ini
 COPY php/opcache-recommended.ini /usr/local/etc/php/conf.d/opcache-recommended.ini
 COPY php/www.conf /usr/local/etc/php-fpm.d/www.conf
 
+# HWP MIME Type Support
+# 참고 https://www.mediawiki.org/wiki/Manual:MIME_type_detection
+RUN echo "application/x-hwp hwp" >> /usr/src/includes/libs/mime/mime.types
+RUN echo "application/haansofthwp hwp" >> /usr/src/includes/libs/mime/mime.types
+RUN echo "application/vnd.hancom.hwp hwp" >> /usr/src/includes/libs/mime/mime.types
+RUN echo "application/x-hwp application/haansofthwp application/vnd.hancom.hwp [OFFICE]" >> /usr/src/includes/libs/mime/mime.info
+
 VOLUME /ct
 
 COPY run /usr/local/bin/

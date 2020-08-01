@@ -246,9 +246,11 @@ $wgGroupPermissions['bureaucrat']['disableaccount'] = true;
 ##
 # Files
 ##
+$wgAllowJavaUploads = false;
+
 $wgUploadSizeWarning = 20971520;
 $wgMaxUploadSize = 20971520;
-$wgAllowJavaUploads = false;
+
 $wgStrictFileExtensions = true;
 $wgFileExtensions = [
 	// Images
