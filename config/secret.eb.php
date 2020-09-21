@@ -32,9 +32,10 @@ $wgPasswordSender   = getenv('PASSWORD_SENDER_CONTACT_EMAIL_ADDR');
 
 $wgSMTP = [
     'host'      => getenv('SMTP_HOST'),
-    'IDHost'    => getenv('SMTP_HOST'),
-    'port'      => 25,
-    'auth'      => false,
+	'IDHost'    => getenv('SMTP_ID_HOST'),
+	'localhost' => 'hyu.wiki',
+    'port'      => 465,
+    'auth'      => true,
     'username'  => getenv('SMTP_USERNAME'),
     'password'  => getenv('SMTP_PASSWORD'),
 ];
